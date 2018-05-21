@@ -36,10 +36,9 @@
                             </div>
                             <!-- 第一块 -->
                             <div class="one-block block">
-                                <!-- banner -->
-                                <div class="swiper-container swiper-story swiper-no-swiping ">
+                                <!-- banner  swiper-no-swiping-->
+                                <div class="swiper-container swiper-story swiper-no-swiping">
                                     <div class="swiper-wrapper banner">
-
                                     </div>
                                     <div class="swiper-pagination"></div>
                                 </div>
@@ -49,7 +48,6 @@
                                         <a href="#"><img src="{{ad_pic_url}}" alt=""></a>
                                     </div>
                                     {{/each}}
-
                                 </script>
                                 <div class="nav-list">
                                     <ul>
@@ -225,7 +223,6 @@
                                 <div class="topics-list">
                                     <div class="topics-list-one">
 
-
                                         <script id="topics-list" type="text/x-handlebars-template">
                                             {{#each data}}
                                             <span><img src="{{ad_pic_url}}" alt=""></span> {{/each}}
@@ -238,12 +235,57 @@
                                     <p>更多精选专题</p>
                                 </div>
                             </div>
+                            <!-- 第八块 -->
+                            <div class="eight-block more block">
+                                <div class="more-list">
+                                    <script id="more-list" type="text/x-handlebars-template">
+                                        {{#each this}}
+                                        <dl>
+                                            <dt><img src="{{cover}}" alt=""></dt>
+                                            <dd>
+                                                <h3>{{title}}</h3>
+                                                <p>{{authors}}</p>
+                                                <p>{{summary}}</p>
+
+                                                <b>
+                                                        {{#each tags}}
+                                                            <span>{{this}}</span>
+                                                        {{/each}}
+                                                    </b>
+                                            </dd>
+                                        </dl>
+                                        {{/each}}
+                                    </script>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="search-ipt">
-                            输入书名/作者/关键字
+                    <div class="swiper-slide bookrack">
+                        <div class="bookrack-nav">
+                            <div class="search-ipt">
+                                输入书名/作者/关键字
+                            </div>
+                            <div class="icon-toggle">
+                                <span class="toggle-list"></span>
+                            </div>
                         </div>
+                        <div class="book-list">
+
+                        </div>
+                        <script id="book-list" type="text/x-handlebars-template">
+                            {{#each data}}
+                            <a href="#">
+                                <dl>
+                                    <dt><img src="{{cover}}" alt=""></dt>
+                                    <dd>
+                                        <h3>{{title}}</h3>
+                                        <p>{{authors}}</p>
+                                        <p>{{rights}}</p>
+                                    </dd>
+                                </dl>
+                            </a>
+                            {{/each}}
+                        </script>
                     </div>
                 </div>
             </div>

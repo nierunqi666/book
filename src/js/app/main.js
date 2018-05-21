@@ -8,6 +8,7 @@ require.config({
         "index": 'app/index',
         "detail": 'app/detail',
         "getPath": 'common/getPath',
-        "render": 'common/render'
+        "render": 'common/render',
+        "GetSlideDirection": 'common/slide-direction'
     }
 });

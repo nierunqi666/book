@@ -534,4 +534,155 @@
             text-align: center;
         }
     }
+    .more {
+        .more-list {
+            dl {
+                width: 100%;
+                height: auto;
+                display: flex;
+                padding: pxTorem(20px) pxTorem(8px);
+                border-bottom: 1px solid #ccc;
+                dt {
+                    width: pxTorem(88px);
+                    height: auto;
+                    margin: 0 pxTorem(8px);
+                    img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                    }
+                }
+                dd {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    h3 {
+                        font-size: pxTorem(17px);
+                        color: #000;
+                    }
+                    p {
+                        color: #666666;
+                        // overflow: hidden;
+                        // text-overflow: ellipsis;
+                        // white-space: nowrap;
+                    }
+                    b {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        span {
+                            padding: pxTorem(4px);
+                            margin: 0 pxTorem(4px);
+                            display: block;
+                            border: 1px solid $green-color;
+                            color: $green-color;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .bookrack {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        .bookrack-nav {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            .search-ipt {
+                width: 75%;
+            }
+            .icon-toggle {
+                width: pxTorem(30px);
+                height: pxTorem(30px);
+                border: 1px solid #ccc;
+                line-height: pxTorem(35px);
+                .toggle-list {
+                    width: pxTorem(30px);
+                    height: pxTorem(30px);
+                    margin: 0 auto;
+                    display: block;
+                    @include bg("../img/icon-switch.png");
+                }
+                .switch-list {
+                    width: pxTorem(30px);
+                    height: pxTorem(30px);
+                    margin: 0 auto;
+                    display: block;
+                    @include bg("../img/icon-swicth-list.png");
+                }
+            }
+        }
+        .book-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            dl {
+                height: auto;
+                display: flex;
+                padding: pxTorem(10px) pxTorem(8px);
+                border-bottom: 1px solid #ccc;
+                dt {
+                    width: pxTorem(88px);
+                    height: auto;
+                    margin: 0 pxTorem(8px);
+                    img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                    }
+                }
+                dd {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    h3 {
+                        font-size: pxTorem(17px);
+                        color: #000;
+                    }
+                    p {
+                        color: #666666;
+                        margin: pxTorem(5px);
+                    }
+                }
+            }
+            &.list-change {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                dl {
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    border: none;
+                    dt {
+                        width: pxTorem(88px);
+                        height: pxTorem(100px);
+                        margin: 0 pxTorem(8px);
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            display: block;
+                        }
+                    }
+                    dd {
+                        h3 {
+                            font-size: pxTorem(14px);
+                            color: #000;
+                            text-align: center;
+                        }
+                        p {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
