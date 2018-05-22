@@ -178,4 +178,10 @@ require(['jquery', 'swiper', 'bscroll', 'render', 'GetSlideDirection'], function
     }, false);
 
 
+
+    $('.search-ipt').on('click', function() {
+        location.href = '../../page/search.html';
+    })
+
+
 })

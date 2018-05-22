@@ -1,0 +1,12 @@
+<script id="book-list" type="text/x-handlebars-template">
+    {{#each this}}
+    <a href="{{id}}">
+        <dl>
+            <dt><img src="{{cover}}" alt=""></dt>
+            <dd>
+                <h3>{{title}}</h3>
+            </dd>
+        </dl>
+    </a>
+    {{/each}}
+</script>

@@ -33,7 +33,8 @@ gulp.task('server', function() {
             open: true,
             middleware: function(req, res, next) {
                 if (/\/api/g.test(req.url)) {
-                    var data = mock(req.url);
+                    var url = decodeURI(req.url);
+                    var data = mock(url);
                     // if (req.url == '/api/recommend?pageNum=1&count=10') {
                     //     console.log(1);
                     //     console.log(data);

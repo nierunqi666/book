@@ -90,3 +90,51 @@ header {
         margin-left: pxTorem(34px);
     }
 }
+
+.search-header {
+    width: 100%;
+    height: pxTorem(34px);
+    line-height: pxTorem(34px);
+    background-color: $header-bg;
+    border-bottom: 1px solid $header-line-bg;
+    display: flex;
+    padding: pxTorem(6px) 0;
+    font-size: pxTorem(12px);
+    .icon-back {
+        width: pxTorem(34px);
+        height: pxTorem(34px);
+        @include bg("../img/icon-back.png");
+        background-size: pxTorem(22px);
+    }
+    .search {
+        flex: 1;
+        height: pxTorem(34px);
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        border: 1px solid #ccc;
+        margin-right: pxTorem(10px);
+        .icon-search {
+            width: pxTorem(30px);
+            height: pxTorem(30px);
+            display: block;
+            @include bg("../img/icon-search.png");
+            background-size: pxTorem(20px);
+            border-right: 1px solid #ccc;
+            padding-right: pxTorem(5px);
+        }
+        input {
+            width: 80%;
+            height: auto;
+            margin: 0 pxTorem(5px);
+        }
+        .click-search {
+            width: pxTorem(50px);
+            height: pxTorem(30px);
+            border-left: 1px solid #ccc;
+            padding-left: pxTorem(10px);
+        }
+    }
+}
