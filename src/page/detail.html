@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>详情</title>
+    <link rel="stylesheet" href="../css/detail.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="search-header">
+            <script id="deatil-header" type="text/x-handlebars-template">
+                <p>{{title}}</p>
+            </script>
+        </header>
+        <section class="section">
+            <script id="deatil-cont" type="text/x-handlebars-template">
+                <div class="picWord">
+                    <dl>
+                        <dt><img src="{{item.cover}}" alt=""></dt>
+                        <dd>
+                            <h3 class="title">{{item.title}}</h3>
+                            <p class="author">{{item.authors}}</p>
+                            <div class="appraise">
+                                <span>1525个评价</span>
+                            </div>
+                            <p class="price">价格:<span>5书币</span>/千字</p>
+                            <p class="num">字数:<span>30万字</span><span class="status">已完结</span></p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="btn">
+                    <button class="begin">开始阅读</button>
+                    <button class="onload">下载</button>
+                </div>
+                <div class="word block">
+                    <p>{{item.content}}</p>
+                    <a href="chapter.html?id={{item.latest_id
+                    }}">
+                        <h4>最新 {{item.latest}}</h4>
+                    </a>
+                </div>
+                <div class="type-tag block">
+                    <h5>类别标签</h5>
+                    <ul>
+                        {{#each item.categories}}
+                        <li>{{label}}</li>
+
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="else block">
+                    <p>作者其他图书</p>
+                    <div class="else-list">
+                        {{#each author_books}}
+                        <dl>
+                            <dt><img src="{{cover}}" alt=""></dt>
+                            <dd>{{title}}</dd>
+                        </dl>
+                        {{/each}}
+
+                    </div>
+                    <p class="all">查看全部</p>
+                </div>
+                <div class="msg">
+                    <span> 图书信息</span>
+                    <p>版权:{{item.rights}}</p>
+                </div>
+            </script>
+
+
+
+
+        </section>
+    </div>
+    <script src="../js/lib/require.js"></script>
+    <script>
+        require(['../js/app/main'], function() {
+            require(['detail'])
+        })
+    </script>
+</body>
+
+</html>

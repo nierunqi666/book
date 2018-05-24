@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/lib/flexible.js"></script>
+    <title>章节</title>
+    <link rel="stylesheet" href="../css/chapter.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="search-header"></header>
+        <section class="section">
+            <ul class="chapter-list">
+                <script type="text/x-handlebars-template" id="chapter-list">
+                    {{#each toc}}
+                    <a href="everyPage.html">
+                        <li>{{title}}</li>
+                    </a>
+                    {{/each}}
+                </script>
+            </ul>
+        </section>
+    </div>
+    <script src="../js/lib/require.js"></script>
+    <script>
+        require(['../js/app/main'], function() {
+            require(['chapter'])
+        })
+    </script>
+</body>
+
+</html>

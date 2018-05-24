@@ -2,7 +2,8 @@ require(['jquery', 'header', 'render', 'text!searchTpl', 'bscroll', 'storage'], 
 
     header({ isSearch: true });
     $('body').append(searchTpl);
-    var arr = [];
+    var arr = storage.get('items') || [];
+    render(arr, $('#history-list'), $('.history-search'));
     //小tag
     $('.history-search').on('click', 'li', function() {
         var val = $(this).text();
@@ -20,9 +21,6 @@ require(['jquery', 'header', 'render', 'text!searchTpl', 'bscroll', 'storage'], 
                     $('.inner-content').html('<p>暂无数据哦<p>');
                 } else {
                     render(data.items, $('#book-list'), $('.search-list'));
-                    var myScroll = new bscroll('.section', {
-                        scrollY: true,
-                    });
                     $('.history-search').hide();
                 }
 
@@ -58,8 +56,10 @@ require(['jquery', 'header', 'render', 'text!searchTpl', 'bscroll', 'storage'], 
                             storage.set('items', arr);
                         }
                         render(data.items, $('#book-list'), $('.search-list'));
-                        var myScroll = new bscroll('.section', {
+                        var myScroll = new bscroll('.scroll-wrap', {
                             scrollY: true,
+                            probeType: 2,
+                            click: true
                         });
                         $('.history-search').hide();
                     }
@@ -72,8 +72,6 @@ require(['jquery', 'header', 'render', 'text!searchTpl', 'bscroll', 'storage'], 
         }
     })
 
-
-
     //input
     $('.search-ipt').on('input', function() {
         var val = $(this).val();
@@ -83,7 +81,4 @@ require(['jquery', 'header', 'render', 'text!searchTpl', 'bscroll', 'storage'], 
             $('.search-list').html('');
         }
     });
-
-
-
 });

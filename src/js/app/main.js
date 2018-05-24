@@ -25,6 +25,9 @@ require.config({
         "index": "app/index",
         "search": "app/search",
         "detail": "app/detail",
+        "chapter": "app/chapter",
+
+
 
 
 

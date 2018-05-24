@@ -1,0 +1,164 @@
+@import "_header.scss";
+@import "_common.scss";
+@import "_mixin.scss";
+@import "_config.scss";
+.wrap {
+    font-size: pxTorem(14px);
+    overflow-y: scroll;
+}
+
+section {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    // display: flex;
+    // flex-direction: column;
+    .picWord {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin: pxTorem(20px) 0;
+        dl {
+            width: 100%;
+            height: auto;
+            display: flex;
+            dt {
+                width: pxTorem(80px);
+                height: auto;
+                margin: 0 pxTorem(30px);
+                img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+            dd {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                * {
+                    margin: pxTorem(5px) 0;
+                }
+                .num {
+                    .status {
+                        padding: pxTorem(2px) pxTorem(5px);
+                        border: 1px solid $author-color;
+                        border-radius: pxTorem(3px);
+                        margin-left: pxTorem(5px);
+                        color: $author-color;
+                    }
+                }
+                .author {
+                    color: $author-color;
+                }
+            }
+        }
+    }
+    .btn {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        margin: pxTorem(15px) 0;
+        display: flex;
+        button {
+            width: 50%;
+            height: auto;
+            padding: pxTorem(8px) pxTorem(10px);
+            border: 1px solid #ccc;
+            margin: 0 pxTorem(15px);
+            outline: none;
+            border-radius: pxTorem(5px);
+        }
+        .begin {
+            background: orange;
+            color: #fff;
+        }
+        .onload {
+            background: #fff;
+        }
+    }
+    .word {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        a {
+            text-decoration: none;
+        }
+        h4 {
+            margin-top: pxTorem(10px);
+            text-align: center;
+            width: 100%;
+            height: pxTorem(44px);
+            line-height: pxTorem(44px);
+            border-top: pxTorem(1px) solid #ccc;
+        }
+        p {
+            margin: 0 pxTorem(10px);
+            @include line(4);
+        }
+    }
+    .type-tag {
+        h5 {
+            margin: pxTorem(5px) pxTorem(10px);
+        }
+        ul {
+            display: flex;
+            margin-bottom: pxTorem(8px);
+            li {
+                padding: pxTorem(3px) pxTorem(8px);
+                border: 1px solid #ccc;
+                margin: pxTorem(5px) pxTorem(5px);
+                text-align: center;
+                border-radius: pxTorem(5px);
+            }
+            li:nth-child(3n) {
+                background: $tag-bg3;
+            }
+            li:nth-child(3n+1) {
+                background: $tag-bg2;
+            }
+            li:nth-child(3n+2) {
+                background: $tag-bg1;
+            }
+        }
+    }
+    .else {
+        width: 100%;
+        height: auto;
+        .else-list {
+            width: 100%;
+            height: auto;
+            display: flex;
+            margin: pxTorem(10px) pxTorem(10px);
+            dl {
+                flex: 1;
+                margin: pxTorem(5px) pxTorem(10px);
+                dt {
+                    width: pxTorem(80px);
+                    height: pxTorem(113px);
+                    margin: 0 auto;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                    }
+                }
+                dd {
+                    text-align: center;
+                    margin-top: pxTorem(4px);
+                }
+            }
+        }
+        .all {
+            margin: pxTorem(5px) auto;
+            text-align: center;
+            border-top: pxTorem(1px) solid #ccc;
+            padding: pxTorem(10px) pxTorem(10px);
+        }
+    }
+    .msg {
+        margin: pxTorem(10px) pxTorem(10px);
+    }
+}

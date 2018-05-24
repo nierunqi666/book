@@ -185,6 +185,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    font-size: pxTorem(12px);
 }
 
 .block {
@@ -193,4 +194,12 @@ body {
 
 .none {
     display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
 }

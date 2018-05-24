@@ -52,32 +52,36 @@ section {
     width: 100%;
     height: auto;
     overflow-y: scroll;
-    dl {
+    a {
+        width: 100%;
         height: auto;
-        display: flex;
-        padding: pxTorem(10px) pxTorem(8px);
-        border-bottom: 1px solid #ccc;
-        dt {
-            width: pxTorem(88px);
+        dl {
             height: auto;
-            margin: 0 pxTorem(8px);
-            img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-        }
-        dd {
-            flex: 1;
             display: flex;
-            flex-direction: column;
-            h3 {
-                font-size: pxTorem(17px);
-                color: #000;
+            padding: pxTorem(10px) pxTorem(8px);
+            border-bottom: 1px solid #ccc;
+            dt {
+                width: pxTorem(88px);
+                height: auto;
+                margin: 0 pxTorem(8px);
+                img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
             }
-            p {
-                color: #666666;
-                margin: pxTorem(5px);
+            dd {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                h3 {
+                    font-size: pxTorem(17px);
+                    color: #000;
+                }
+                p {
+                    color: #666666;
+                    margin: pxTorem(5px);
+                }
             }
         }
     }

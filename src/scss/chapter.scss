@@ -1,0 +1,27 @@
+@import "_header.scss";
+@import "_common.scss";
+@import "_mixin.scss";
+@import "_config.scss";
+.section {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    ul {
+        width: 100%;
+        height: auto;
+        a {
+            text-decoration: none;
+            color: #999;
+            li {
+                text-indent: pxTorem(10px);
+                width: 100%;
+                height: pxTorem(44px);
+                line-height: pxTorem(44px);
+                border-bottom: pxTorem(1px) solid #ccc;
+            }
+            li.active {
+                color: orange;
+            }
+        }
+    }
+}

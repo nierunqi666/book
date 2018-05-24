@@ -15,21 +15,27 @@
         <header class="search-header">
 
         </header>
-        <section class="section">
+        <section class="scroll-wrap">
             <div class="inner-content">
                 <ul class="history-search">
-                    <li class="tag">如果蜗牛有爱情</li>
-                    <li class="tag">择天记</li>
+                    <!-- <li class="tag">如果蜗牛有爱情</li>
                     <li class="tag">一夜弃妃</li>
+                    <li class="tag">择天记</li>
                     <li class="tag">别那么骄傲</li>
                     <li class="tag">诛仙</li>
                     <li class="tag">豪门小老婆</li>
                     <li class="tag">异能小农民</li>
                     <li class="tag">武动乾坤</li>
-                    <li class="tag">别那么骄傲</li>
+                    <li class="tag">别那么骄傲</li> -->
                 </ul>
-                <script id="history-list" type="text/x-handlebars-template"></script>
-                <div class="search-list none"></div>
+                <script id="history-list" type="text/x-handlebars-template">
+                    {{#each this}}
+                    <li class="tag">{{this}}</li>
+                    {{/each}}
+                </script>
+                <div class="search-list">
+
+                </div>
             </div>
         </section>
     </div>
