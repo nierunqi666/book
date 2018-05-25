@@ -1,4 +1,4 @@
-require(['jquery', 'handle', 'render', 'getPath', 'header', 'bscroll'], function($, handle, render, getPath, header, bscroll) {
+require(['jquery', 'handle', 'render', 'getPath', 'header', 'bscroll', 'storage'], function($, handle, render, getPath, header, bscroll, storage) {
     header({ title: '目录' });
     var id = getPath().id;
     $.ajax({
@@ -14,14 +14,14 @@ require(['jquery', 'handle', 'render', 'getPath', 'header', 'bscroll'], function
                 scrollY: true,
                 click: true
             });
-            var chapter_id = getPath().chapter_id;
+            var chapter_id = storage.get('chapter_id');
+            console.log(chapter_id);
             var target;
             if (chapter_id) {
-                target = chapter_id;
+                target = chapter_id - 1;
             } else {
                 target = data.item.toc.length - 1;
             }
-            console.log(target);
             $('.chapter-list li').eq(target).addClass('active');
             myScroll.scrollToElement($('.chapter-list li').eq(target)[0], '.5s', true, true, 'easing');
 

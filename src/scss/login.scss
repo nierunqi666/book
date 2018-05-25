@@ -1,0 +1,13 @@
+@import "_common.scss";
+.wrap {
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    .box {
+        margin: pxTorem(5px) pxTorem(10px);
+        background: #fff;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+    }
+}

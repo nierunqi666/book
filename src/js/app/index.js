@@ -3,7 +3,10 @@ require(['jquery', 'swiper', 'bscroll', 'render', 'GetSlideDirection'], function
     //尺寸
     var fontsize = $("html").css("fontSize");
     var size = parseFloat(fontsize) * 60 / 37.5;
-
+    //进入登录页面
+    $('.icon-sign').on('click', function() {
+        location.href = '../../page/login.html';
+    });
     //实例化swiper
     var mySwiper = new swiper(".swiper-max", {
         on: {

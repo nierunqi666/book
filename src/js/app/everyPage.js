@@ -45,14 +45,21 @@ require(['jquery', 'handle', 'render', 'getPath', 'bscroll', 'storage', 'base64'
     //背景
     var color = storage.get('bgColor');
     $('section').css('background', color); //初始化设置背景
+    // var flag = true;
     $('.bg-list').on('click', 'li', function() {
+        // if (flag) {
+        //     $(this).addClass('active').siblings().removeClass('active');
+        //     color = $(this).attr('bg-btn');
+        //     storage.set('bgColor', color);
+        //     $('section').css('background', color);
+        // }
         if ($('.night').hasClass('day')) {
+            $(this).addClass('active').siblings().removeClass('active');
+        } else {
             $(this).addClass('active').siblings().removeClass('active');
             color = $(this).attr('bg-btn');
             storage.set('bgColor', color);
             $('section').css('background', color);
-        } else {
-            $(this).addClass('active').siblings().removeClass('active');
         }
 
     })
@@ -61,15 +68,17 @@ require(['jquery', 'handle', 'render', 'getPath', 'bscroll', 'storage', 'base64'
     $('.night').on('click', function() {
         $(this).toggleClass('day');
         if ($(this).hasClass('day')) {
-            $(this).find($('b')).html('夜间');
-            var bg = storage.get('bgColor');
-            $('section').css('background', bg);
-        } else {
             $(this).find($('b')).html('白天');
             $('section').css({
                 'background': '#0f1410',
                 'color': '#4e534f'
             });
+
+        } else {
+            $(this).find($('b')).html('夜间');
+            // storage.set('bgColor', '#0f1410');
+            var bg = storage.get('bgColor');
+            $('section').css('background', bg);
         }
 
     })
@@ -138,6 +147,8 @@ require(['jquery', 'handle', 'render', 'getPath', 'bscroll', 'storage', 'base64'
 
 
     });
+
+    $('.cur').html(storage.get('chapter_id'));
     //请求下一章
     $('.next').on('click', function() {
         if (chapter_id < 5) {
@@ -154,8 +165,8 @@ require(['jquery', 'handle', 'render', 'getPath', 'bscroll', 'storage', 'base64'
 
     //目录
     $('.list').on('click', function() {
-        chapter_id = $(this).index();
-        storage.set('chapter_id');
+        chapter_id = storage.get('chapter_id');
+        storage.set('chapter_id', chapter_id);
         window.location.href = '../../page/chapter.html?id=' + id + '&chapter_id='
         chapter_id;
     })

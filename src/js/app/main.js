@@ -29,6 +29,7 @@ require.config({
         "detail": "app/detail",
         "chapter": "app/chapter",
         "everyPage": "app/everyPage",
+        "login": "app/login",
 
 
 
@@ -38,5 +39,10 @@ require.config({
         "headerTpl": "../../page/tpl/header.html",
         "searchTpl": "../../page/tpl/search-tpl.html"
 
+    },
+    shim: {
+        'base64': {
+            deps: ['jquery']
+        }
     }
 });

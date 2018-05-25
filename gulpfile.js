@@ -31,6 +31,7 @@ gulp.task('server', function() {
         .pipe(server({
             port: 9090,
             open: true,
+            host: '169.254.85.122',
             middleware: function(req, res, next) {
                 if (/\/api/g.test(req.url)) {
                     var url = decodeURI(req.url);
