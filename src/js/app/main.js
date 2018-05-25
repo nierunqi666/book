@@ -7,6 +7,8 @@ require.config({
         "bscroll": "lib/bscroll",
         "swiper": "lib/swiper-4.1.6.min",
         "text": "lib/text",
+        "base64": "lib/jquery.base64",
+        "jsonp": "lib/jquery.jsonp",
 
 
 
@@ -26,6 +28,7 @@ require.config({
         "search": "app/search",
         "detail": "app/detail",
         "chapter": "app/chapter",
+        "everyPage": "app/everyPage",
 
 
 

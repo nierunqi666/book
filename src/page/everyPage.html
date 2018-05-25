@@ -13,72 +13,67 @@
     <div class="wrap">
         <section>
             <article>
-                <h4>第一章</h4>
-                <p>我是一个并不怎么喜欢写作文的人。从小学开始，我的作文大多都是“挤”出来的，鲜少部分是自己一鼓作气写出来的。如果说我真的擅长写作文的话，那应该就是幻想之类的文章吧。 对于我自己的写作水平，我还是有自知之明的。在所有的作文类型中，我最擅长写的就是幻想与童话。因为我想象力很好，所以幻想与童话神马的都是小意思！一下子就写完了！ 其次便是写物的了，特别是些动物。记得有一次，老师让我们描写鸡，可我偏偏写了狗，原以为要重写的，可没想道还得到了“优"!每回想起那篇作文，心里不由得哈哈大笑啊！真为我的作品感到自豪啊！
-                    我最讨厌写的还是那些虚伪的读后感和观后感了
-                </p>
-                <p>我是一个并不怎么喜欢写作文的人。从小学开始，我的作文大多都是“挤”出来的，鲜少部分是自己一鼓作气写出来的。如果说我真的擅长写作文的话，那应该就是幻想之类的文章吧。 对于我自己的写作水平，我还是有自知之明的。在所有的作文类型中，我最擅长写的就是幻想与童话。因为我想象力很好，所以幻想与童话神马的都是小意思！一下子就写完了！ 其次便是写物的了，特别是些动物。记得有一次，老师让我们描写鸡，可我偏偏写了狗，原以为要重写的，可没想道还得到了“优"!每回想起那篇作文，心里不由得哈哈大笑啊！真为我的作品感到自豪啊！
-                    我最讨厌写的还是那些虚伪的读后感和观后感了
-                </p>
-                <p>我是一个并不怎么喜欢写作文的人。从小学开始，我的作文大多都是“挤”出来的，鲜少部分是自己一鼓作气写出来的。如果说我真的擅长写作文的话，那应该就是幻想之类的文章吧。 对于我自己的写作水平，我还是有自知之明的。在所有的作文类型中，我最擅长写的就是幻想与童话。因为我想象力很好，所以幻想与童话神马的都是小意思！一下子就写完了！ 其次便是写物的了，特别是些动物。记得有一次，老师让我们描写鸡，可我偏偏写了狗，原以为要重写的，可没想道还得到了“优"!每回想起那篇作文，心里不由得哈哈大笑啊！真为我的作品感到自豪啊！
-                    我最讨厌写的还是那些虚伪的读后感和观后感了
-                </p>
-                <p>我是一个并不怎么喜欢写作文的人。从小学开始，我的作文大多都是“挤”出来的，鲜少部分是自己一鼓作气写出来的。如果说我真的擅长写作文的话，那应该就是幻想之类的文章吧。 对于我自己的写作水平，我还是有自知之明的。在所有的作文类型中，我最擅长写的就是幻想与童话。因为我想象力很好，所以幻想与童话神马的都是小意思！一下子就写完了！ 其次便是写物的了，特别是些动物。记得有一次，老师让我们描写鸡，可我偏偏写了狗，原以为要重写的，可没想道还得到了“优"!每回想起那篇作文，心里不由得哈哈大笑啊！真为我的作品感到自豪啊！
-                    我最讨厌写的还是那些虚伪的读后感和观后感了
-                </p>
+                <script id="acticle-tpl" type="text/x-handlebars-template">
+                    <h4>{{t}}</h4>
+                    {{#each p}}
+                    <p>{{this}}
+                    </p>
+                    {{/each}}
+                </script>
             </article>
-            <div class="top">
-                <span class="icon-back"></span>
-                <span class="back">返回</span>
-                <span class="more">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </span>
-            </div>
-            <div class="bottom">
-                <div class="bottom-btn">
-                    <span class="prev">上一章</span>
-                    <span><b>1</b>/74</span>
-                    <span class="next">下一章</span>
-                </div>
-                <div class="bottom-list">
-                    <ul>
-                        <li class="list">
-                            <span></span> 目录
-                        </li>
-                        <li class="font"><span></span> 字体</li>
-                        <li class="night"><span></span> 夜间</li>
-                        <li class="load"><span></span> 下载</li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="font-list">
-                <div class="font-size">
-                    <p>字号</p>
-                    <button class="large"></button>
-                    <button class="small"></button>
-                </div>
-                <div class="font-bg">
-                    <p>背景</p>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
 
         </section>
-        <div class="mask none"></div>
+        <div class="top">
+            <span class="icon-back"></span>
+            <span class="back">返回</span>
+            <span class="more"></span>
+        </div>
+        <div class="bottom none">
+            <div class="bottom-btn">
+                <span class="prev">上一章</span>
+                <span><b class="cur">1</b>/<b class="total"></b></span>
+                <span class="next">下一章</span>
+            </div>
+            <div class="bottom-list">
+                <ul>
+                    <li class="list">
+                        <span></span> <b>目录</b>
+                    </li>
+                    <li class="font"><span></span> <b>字体</b></li>
+                    <li class="night"><span></span> <b>夜间</b></li>
+                    <li class="load"><span></span> <b>下载</b></li>
+                </ul>
+            </div>
 
+        </div>
+        <div class="font-list none">
+            <div class="font-size">
+                <p>字号</p>
+                <button class="large">大</button>
+                <button class="small">小</button>
+            </div>
+            <div class="font-bg">
+                <p>背景</p>
+                <ul class="bg-list">
+                    <li bg-btn="#f7eee5" class="active"></li>
+                    <li bg-btn="#e9dfc7"></li>
+                    <li bg-btn="#e9dfc7"></li>
+                    <li bg-btn="#cdefce"></li>
+                    <li bg-btn="#283548"></li>
+                    <li bg-btn="#0f1410"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mask none"></div>
     </div>
+    <script src="../js/lib/require.js"></script>
+    <script>
+        require(['../js/app/main.js'], function() {
+            require(['everyPage'])
+        });
+    </script>
+
 </body>
 
 </html>

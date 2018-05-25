@@ -1,190 +1,93 @@
-/*jslint adsafe: false, bitwise: true, browser: true, cap: false, css: false,
-  debug: false, devel: true, eqeqeq: true, es5: false, evil: false,
-  forin: false, fragment: false, immed: true, laxbreak: false, newcap: true,
-  nomen: false, on: false, onevar: true, passfail: false, plusplus: true,
-  regexp: false, rhino: true, safe: false, strict: false, sub: false,
-  undef: true, white: false, widget: false, windows: false */
-/*global jQuery: false, window: false */
-"use strict";
-
-/*
- * Original code (c) 2010 Nick Galbreath
- * http://code.google.com/p/stringencoders/source/browse/#svn/trunk/javascript
+/*!
+ * jquery.base64.js 0.1 - https://github.com/yckart/jquery.base64.js
+ * Base64 en & -decoding
  *
- * jQuery port (c) 2010 Carlo Zottmann
- * http://github.com/carlo/jquery-base64
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- */
+ * Copyright (c) 2012 Yannick Albert (http://yckart.com)
+ * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php).
+ * 2013/02/10
+ **/
+;(function($){
+    $.base64 = $.fn.base64 = function (dir, input) {
 
-/* base64 encode/decode compatible with window.btoa/atob
- *
- * window.atob/btoa is a Firefox extension to convert binary data (the "b")
- * to base64 (ascii, the "a").
- *
- * It is also found in Safari and Chrome.  It is not available in IE.
- *
- * if (!window.btoa) window.btoa = $.base64.encode
- * if (!window.atob) window.atob = $.base64.decode
- *
- * The original spec's for atob/btoa are a bit lacking
- * https://developer.mozilla.org/en/DOM/window.atob
- * https://developer.mozilla.org/en/DOM/window.btoa
- *
- * window.btoa and $.base64.encode takes a string where charCodeAt is [0,255]
- * If any character is not [0,255], then an exception is thrown.
- *
- * window.atob and $.base64.decode take a base64-encoded string
- * If the input length is not a multiple of 4, or contains invalid characters
- *   then an exception is thrown.
- */
+        var publ = {},
+            self = this,
+            b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-define(['jquery'], function($) {
+        // http://phpjs.org/functions/base64_encode/
+        publ.encode = function (data) {
+            data = !(self instanceof $) ? data : self.is(':input') ? self.val() : self.text();
+            data = unescape(encodeURIComponent( data ));
 
+            if (data === '') return;
+            var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+                ac = 0,
+                enc = "",
+                tmp_arr = [];
 
+            if (!data) return data;
 
-    var _PADCHAR = "=",
-        _ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
-        _VERSION = "1.0";
+            do { // pack three octets into four hexets
+                o1 = data.charCodeAt(i++);
+                o2 = data.charCodeAt(i++);
+                o3 = data.charCodeAt(i++);
 
+                bits = o1 << 16 | o2 << 8 | o3;
 
-    function _getbyte64(s, i) {
-        // This is oddly fast, except on Chrome/V8.
-        // Minimal or no improvement in performance by using a
-        // object with properties mapping chars to value (eg. 'A': 0)
+                h1 = bits >> 18 & 0x3f;
+                h2 = bits >> 12 & 0x3f;
+                h3 = bits >> 6 & 0x3f;
+                h4 = bits & 0x3f;
 
-        var idx = _ALPHA.indexOf(s.charAt(i));
+                // use hexets to index into b64, and append result to encoded string
+                tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+            } while (i < data.length);
 
-        if (idx === -1) {
-            throw "Cannot decode base64";
-        }
+            enc = tmp_arr.join('');
 
-        return idx;
-    }
+            var r = data.length % 3;
 
+            return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
+        };
 
-    function _decode(s) {
-        var pads = 0,
-            i,
-            b10,
-            imax = s.length,
-            x = [];
+        // http://phpjs.org/functions/base64_decode/
+        publ.decode = function (data) {
+            data = !(self instanceof $) ? data : self.is(':input') ? self.val() : self.text();
 
-        s = String(s);
+            var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+                ac = 0,
+                dec = "",
+                tmp_arr = [];
 
-        if (imax === 0) {
-            return s;
-        }
+            if (!data) return data;
 
-        if (imax % 4 !== 0) {
-            throw "Cannot decode base64";
-        }
+            data += '';
 
-        if (s.charAt(imax - 1) === _PADCHAR) {
-            pads = 1;
+            do { // unpack four hexets into three octets using index points in b64
+                h1 = b64.indexOf(data.charAt(i++));
+                h2 = b64.indexOf(data.charAt(i++));
+                h3 = b64.indexOf(data.charAt(i++));
+                h4 = b64.indexOf(data.charAt(i++));
 
-            if (s.charAt(imax - 2) === _PADCHAR) {
-                pads = 2;
-            }
+                bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
 
-            // either way, we want to ignore this last block
-            imax -= 4;
-        }
+                o1 = bits >> 16 & 0xff;
+                o2 = bits >> 8 & 0xff;
+                o3 = bits & 0xff;
 
-        for (i = 0; i < imax; i += 4) {
-            b10 = (_getbyte64(s, i) << 18) | (_getbyte64(s, i + 1) << 12) | (_getbyte64(s, i + 2) << 6) | _getbyte64(s, i + 3);
-            x.push(String.fromCharCode(b10 >> 16, (b10 >> 8) & 0xff, b10 & 0xff));
-        }
+                if (h3 == 64) {
+                    tmp_arr[ac++] = String.fromCharCode(o1);
+                } else if (h4 == 64) {
+                    tmp_arr[ac++] = String.fromCharCode(o1, o2);
+                } else {
+                    tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+                }
+            } while (i < data.length);
 
-        switch (pads) {
-            case 1:
-                b10 = (_getbyte64(s, i) << 18) | (_getbyte64(s, i + 1) << 12) | (_getbyte64(s, i + 2) << 6);
-                x.push(String.fromCharCode(b10 >> 16, (b10 >> 8) & 0xff));
-                break;
+            dec = tmp_arr.join('');
 
-            case 2:
-                b10 = (_getbyte64(s, i) << 18) | (_getbyte64(s, i + 1) << 12);
-                x.push(String.fromCharCode(b10 >> 16));
-                break;
-        }
+            return decodeURIComponent(escape( dec ));
+        };
 
-        return x.join("");
-    }
-
-
-    function _getbyte(s, i) {
-        var x = s.charCodeAt(i);
-
-        if (x > 255) {
-            throw "INVALID_CHARACTER_ERR: DOM Exception 5";
-        }
-
-        return x;
-    }
-
-
-    function _encode(s) {
-        if (arguments.length !== 1) {
-            throw "SyntaxError: exactly one argument required";
-        }
-
-        s = String(s);
-
-        var i,
-            b10,
-            x = [],
-            imax = s.length - s.length % 3;
-
-        if (s.length === 0) {
-            return s;
-        }
-
-        for (i = 0; i < imax; i += 3) {
-            b10 = (_getbyte(s, i) << 16) | (_getbyte(s, i + 1) << 8) | _getbyte(s, i + 2);
-            x.push(_ALPHA.charAt(b10 >> 18));
-            x.push(_ALPHA.charAt((b10 >> 12) & 0x3F));
-            x.push(_ALPHA.charAt((b10 >> 6) & 0x3f));
-            x.push(_ALPHA.charAt(b10 & 0x3f));
-        }
-
-        switch (s.length - imax) {
-            case 1:
-                b10 = _getbyte(s, i) << 16;
-                x.push(_ALPHA.charAt(b10 >> 18) + _ALPHA.charAt((b10 >> 12) & 0x3F) + _PADCHAR + _PADCHAR);
-                break;
-
-            case 2:
-                b10 = (_getbyte(s, i) << 16) | (_getbyte(s, i + 1) << 8);
-                x.push(_ALPHA.charAt(b10 >> 18) + _ALPHA.charAt((b10 >> 12) & 0x3F) + _ALPHA.charAt((b10 >> 6) & 0x3f) + _PADCHAR);
-                break;
-        }
-
-        return x.join("");
-    }
-
-
-    return {
-        decode: _decode,
-        encode: _encode,
-        VERSION: _VERSION
+        return input ? publ[dir](input) : dir ? null : publ;
     };
-})
+}(jQuery));
