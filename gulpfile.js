@@ -5,6 +5,11 @@ var autoprefixer = require('gulp-autoprefixer');
 var css = require('gulp-clean-css');
 var sequence = require('gulp-sequence');
 var mock = require('./src/mock');
+var querystring = require('querystring');
+var obj = {
+    user: 'adong',
+    pwd: '1201'
+};
 //css
 gulp.task('css', function() {
     return gulp.src('./src/scss/*.scss')
@@ -33,11 +38,27 @@ gulp.task('server', function() {
             open: true,
             host: '169.254.85.122',
             middleware: function(req, res, next) {
+                if (req.url === '/login') {
+                    var str = '';
+                    req.on('data', function(chunk) {
+                        str += chunk;
+                    });
+                    req.on('end', function() {
+                        var data = querystring.parse(str);
+                        console.log(data);
+                        if (data.user == obj.user && data.pwd == obj.pwd) {
+                            res.end(JSON.stringify({ code: 0 }));
+                        } else {
+                            res.end(JSON.stringify({ code: 2 }));
+                        }
+                    })
+                    return false;
+                }
                 if (/\/api/g.test(req.url)) {
                     var url = decodeURI(req.url);
-                    console.log(url);
                     var data = mock(url);
                     res.end(JSON.stringify(data));
+
                 }
                 next()
             }
